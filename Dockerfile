@@ -2,8 +2,8 @@ FROM wordpress
 
 COPY . /var/www/html/
 
-RUN "sed -i "s/Listen 80/Listen ${PORT:-80}/g" /etc/apache2/ports.conf"
-RUN "apache2-foreground "$@""
+COPY ./docker/run-apache2.sh /usr/local/bin/
+CMD [ "run-apache2.sh" ]
 
 #docker exec -it CONTAINER_ID  /bin/bash
 #chown -Rf www-data.www-data .
